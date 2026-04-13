@@ -23,7 +23,7 @@ A modern expense tracker with multi-currency support, analytics, and clean UI.
 - JavaScript
 - Chart.js
 
-  ## ⚙️ How It Works
+## ⚙️ How It Works
 - Data stored in localStorage
 - All values stored in INR
 - Currency conversion applied only for display
@@ -46,7 +46,3 @@ A modern expense tracker with multi-currency support, analytics, and clean UI.
 ![Dark](./assets/dark.png)
 
 
-## 📌 Key Highlights
-- Base currency model (INR)
-- Display-only currency conversion
-- Clean modular code structure

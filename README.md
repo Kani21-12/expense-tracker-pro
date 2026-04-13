@@ -21,7 +21,19 @@ A modern expense tracking web app with multi-currency support and analytics.
 [https://expense-tracker-pro-five-beta.vercel.app/)]
 
 ## 📸 Screenshots
-(Add images here)
+
+### 🏠 Dashboard
+![Dashboard](./assets/dashboard.png)
+
+### 💱 Currency Change
+![Currency](./assets/currency.png)
+
+### 📊 Chart View
+![Chart](./assets/chart.png)
+
+### 🌙 Dark Mode
+![Dark](./assets/dark.png)
+
 
 ## 📌 Key Highlights
 - Base currency model (INR)

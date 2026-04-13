@@ -18,7 +18,7 @@ A modern expense tracking web app with multi-currency support and analytics.
 - Chart.js
 
 ## 🌐 Live Demo
-(Add link after deployment)
+[https://expense-tracker-pro-five-beta.vercel.app/)]
 
 ## 📸 Screenshots
 (Add images here)

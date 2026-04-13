@@ -2,6 +2,9 @@
 
 A modern expense tracker with multi-currency support, analytics, and clean UI.
 
+## 🌐 Live Demo
+[https://expense-tracker-pro-five-beta.vercel.app/)]
+
 ## 🚀 Features
 - Add, edit, delete expenses
 - Monthly budget tracking
@@ -27,9 +30,6 @@ A modern expense tracker with multi-currency support, analytics, and clean UI.
 - Data stored in localStorage
 - All values stored in INR
 - Currency conversion applied only for display
-
-## 🌐 Live Demo
-[https://expense-tracker-pro-five-beta.vercel.app/)]
 
 ## 📸 Screenshots
 

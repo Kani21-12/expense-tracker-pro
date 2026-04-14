@@ -153,7 +153,7 @@ function formatAssistantResponse(json: AiJson) {
 
   return `📊 Summary:\n${safeSummary}\n\n🔍 Insights:\n${insightLines}\n\n💡 Savings Tips:\n${tipLines}${warningBlock}`;
 }
-
+console.log("ENV CHECK:", !!process.env.GROQ_API_KEY);
 export async function POST(request: NextRequest) {
   try {
     console.log("API HIT");

@@ -1,0 +1,12 @@
+[
+    {"category": "Food", "amount": 250, "date": "2026-04-10"},
+    {"category": "Travel", "amount": 120, "date": "2026-04-10"},
+    {"category": "Other", "amount": 900, "date": "2026-04-11"},
+    {"category": "Bills", "amount": 1500, "date": "2026-04-12"},
+    {"category": "Food", "amount": 300, "date": "2026-04-12"},
+    {"category": "Other", "amount": 400, "date": "2026-04-13"},
+    {"category": "Travel", "amount": 100, "date": "2026-04-13"},
+    {"category": "Other", "amount": 700, "date": "2026-04-14"},
+    {"category": "Food", "amount": 200, "date": "2026-04-14"},
+    {"category": "Bills", "amount": 1200, "date": "2026-04-15"}
+  ]

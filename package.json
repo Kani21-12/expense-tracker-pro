@@ -4,11 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "sync-static": "node scripts/sync-static.mjs",
-    "dev": "npm run sync-static && next dev",
-    "build": "npm run sync-static && next build",
-    "start": "next start"
-  },
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start"
+},
   "dependencies": {
     "next": "15.5.2",
     "react": "19.1.1",

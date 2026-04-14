@@ -13,7 +13,7 @@ type CategorySummary = {
 };
 
 const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
-const MODEL =  "llama-3.3-70b-versatile";
+const MODEL =  "llama-3.3-8b-instant";
 
 function isValidTransaction(input: unknown): input is Transaction {
   if (!input || typeof input !== "object") {
@@ -156,15 +156,17 @@ function formatAssistantResponse(json: AiJson) {
 
 export async function POST(request: NextRequest) {
   try {
+    console.log("API HIT");
+
     const apiKey = process.env.GROQ_API_KEY;
 
     if (!apiKey) {
+      console.error("❌ GROQ_API_KEY missing");
       return NextResponse.json(
         { error: "Missing GROQ_API_KEY environment variable." },
         { status: 500 }
       );
     }
-
     const body = await request.json();
     const message = typeof body?.message === "string" ? body.message.trim() : "";
     const transactionsInput = Array.isArray(body?.transactions) ? body.transactions : [];

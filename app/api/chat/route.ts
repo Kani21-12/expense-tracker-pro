@@ -160,10 +160,14 @@ export async function POST(request: NextRequest) {
 
     const apiKey = process.env.GROQ_API_KEY;
 
-if (!apiKey) {
-  console.error("❌ GROQ_API_KEY missing");
-  throw new Error("GROQ_API_KEY is missing in environment variables");
-}
+    if (!apiKey) {
+      console.error("❌ GROQ_API_KEY missing");
+    
+      return NextResponse.json(
+        { error: "Missing GROQ_API_KEY" },
+        { status: 500 }
+      );
+    }
     const body = await request.json();
     const message = typeof body?.message === "string" ? body.message.trim() : "";
     const transactionsInput = Array.isArray(body?.transactions) ? body.transactions : [];
@@ -213,7 +217,16 @@ if (!apiKey) {
 
     if (!groqResponse.ok) {
       const errorText = await groqResponse.text();
-      throw new Error("Groq error: " + errorText);
+    
+      console.error("❌ Groq API error:", errorText);
+    
+      return NextResponse.json(
+        {
+          error: "Groq request failed",
+          details: errorText,
+        },
+        { status: 502 }
+      );
     }
   
 

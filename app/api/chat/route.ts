@@ -161,11 +161,14 @@ export async function POST(request: NextRequest) {
     const apiKey = process.env.GROQ_API_KEY;
 
     if (!apiKey) {
-      console.error("❌ GROQ_API_KEY missing");
-    
+      console.warn("GROQ_API_KEY missing, returning fallback response.");
       return NextResponse.json(
-        { error: "Missing GROQ_API_KEY" },
-        { status: 500 }
+        {
+          reply:
+            "AI insights are temporarily unavailable. Please try again later.",
+          warning: "Missing GROQ_API_KEY",
+        },
+        { status: 200 }
       );
     }
     const body = await request.json();
@@ -193,44 +196,71 @@ export async function POST(request: NextRequest) {
 
     const prompt = buildPrompt(message, transactions);
 
-    const groqResponse = await fetch(GROQ_API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model: MODEL,
-        temperature: 0.3,
-        messages: [
-          {
-            role: "system",
-            content: "Return only valid JSON per the provided schema.",
-          },
-          {
-            role: "user",
-            content: prompt,
-          },
-        ],
-      }),
-    });
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000);
+
+    let groqResponse: Response;
+    try {
+      groqResponse = await fetch(GROQ_API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          model: MODEL,
+          temperature: 0.3,
+          messages: [
+            {
+              role: "system",
+              content: "Return only valid JSON per the provided schema.",
+            },
+            {
+              role: "user",
+              content: prompt,
+            },
+          ],
+        }),
+        signal: controller.signal,
+      });
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Unknown Groq fetch error";
+      console.error("Groq fetch failed:", message);
+      return NextResponse.json(
+        { error: "Failed to reach Groq API. Please try again shortly." },
+        { status: 502 }
+      );
+    } finally {
+      clearTimeout(timeoutId);
+    }
 
     if (!groqResponse.ok) {
-      const errorText = await groqResponse.text();
-    
-      console.error("❌ Groq API error:", errorText);
-    
+      let errorText = "";
+      try {
+        errorText = await groqResponse.text();
+      } catch {
+        errorText = "";
+      }
+      console.error("Groq API error:", groqResponse.status, errorText);
       return NextResponse.json(
         {
           error: "Groq request failed",
-          details: errorText,
+          details: errorText || "No error body received from Groq.",
         },
         { status: 502 }
       );
     }
-  
 
-    const data = await groqResponse.json();
+    let data: any;
+    try {
+      data = await groqResponse.json();
+    } catch {
+      return NextResponse.json(
+        { error: "Invalid JSON received from Groq API." },
+        { status: 502 }
+      );
+    }
     const reply = data?.choices?.[0]?.message?.content;
 
     if (typeof reply !== "string" || !reply.trim()) {
@@ -254,7 +284,10 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     const message =
       error instanceof Error ? error.message : "Unexpected error while processing chat.";
-
-    return NextResponse.json({ error: message }, { status: 500 });
+    console.error("Unhandled chat route error:", message);
+    return NextResponse.json(
+      { error: "Unexpected error while processing chat." },
+      { status: 500 }
+    );
   }
 }

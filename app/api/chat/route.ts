@@ -114,12 +114,7 @@ Return STRICT JSON ONLY in this format:
 If the question is casual (greeting, general talk, unrelated):
 Respond normally in plain text (NO JSON).
 Be friendly and conversational.
-{
-  "summary": "one short line",
-  "insights": ["...", "..."],
-  "savingsTips": ["...", "..."],
-  "warning": "..." | null
-}
+
 
 Expense snapshot:
 - Total spending INR: ${Math.round(summary.totalSpending)}

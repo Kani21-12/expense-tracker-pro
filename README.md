@@ -6,7 +6,7 @@
 
 ## 🔗 Live Demo
 
-👉 (https://expense-tracker-pro-j84j-ip45jo1kh-kani21-12s-projects.vercel.app/index.html)
+👉 (https://expense-tracker-pro-j84j-ip45jo1kh-kani21-12s-projects.vercel.app)
 
 ---
 
@@ -20,6 +20,7 @@
 ### 🤖 AI Chat Insights
 
 <img width="907" height="797" alt="image" src="https://github.com/user-attachments/assets/98ba08af-7d25-46e4-a65a-38ddcfea3ae0" />
+
 
 <img width="613" height="717" alt="image" src="https://github.com/user-attachments/assets/85d3daa6-c664-461d-8288-4f9b4d74a9c6" />
 

@@ -14,13 +14,15 @@
 
 ### 🏠 Dashboard
 
-![Dashboard](https://via.placeholder.com/800x400?text=Dashboard+Screenshot)
+<img width="1915" height="932" alt="image" src="https://github.com/user-attachments/assets/c623ca85-f7c6-4d96-95b7-78367d7b023f" />
+
 
 ### 🤖 AI Chat Insights
 
-![Chat](https://via.placeholder.com/800x400?text=AI+Chat+Screenshot)
+<img width="907" height="797" alt="image" src="https://github.com/user-attachments/assets/98ba08af-7d25-46e4-a65a-38ddcfea3ae0" />
 
-*(Replace with real screenshots later)*
+<img width="613" height="717" alt="image" src="https://github.com/user-attachments/assets/85d3daa6-c664-461d-8288-4f9b4d74a9c6" />
+
 
 ---
 

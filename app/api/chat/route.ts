@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+export const maxDuration = 10;
 
 type Transaction = {
   amount: number;
@@ -197,7 +198,7 @@ export async function POST(request: NextRequest) {
     const prompt = buildPrompt(message, transactions);
 
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 15000);
+    const timeoutId = setTimeout(() => controller.abort(), 8000);
 
     let groqResponse: Response;
     try {

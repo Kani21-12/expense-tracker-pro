@@ -14,7 +14,7 @@ type CategorySummary = {
 };
 
 const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
-const MODEL =  "llama3-8b-8192";
+const MODEL =  "llama-3.1-8b-instant";
 
 function isValidTransaction(input: unknown): input is Transaction {
   if (!input || typeof input !== "object") {

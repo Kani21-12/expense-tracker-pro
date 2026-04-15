@@ -102,7 +102,18 @@ Rules:
 - Suggest realistic savings actions based on the biggest spend areas.
 - Tips must include ₹ amounts or % (at least two tips).
 
-Return STRICT JSON ONLY (no markdown, no extra text) matching this schema:
+If the user question is about expenses, spending, or financial analysis:
+Return STRICT JSON ONLY in this format:
+{
+  "summary": "one short line",
+  "insights": ["...", "..."],
+  "savingsTips": ["...", "..."],
+  "warning": "..." | null
+}
+
+If the question is casual (greeting, general talk, unrelated):
+Respond normally in plain text (NO JSON).
+Be friendly and conversational.
 {
   "summary": "one short line",
   "insights": ["...", "..."],

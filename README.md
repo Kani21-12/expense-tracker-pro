@@ -1,48 +1,160 @@
 # 💰 Expense Tracker Pro
 
-A modern expense tracker with multi-currency support, analytics, and clean UI.
+✨ AI-powered expense tracker with smart insights using Groq LLM + Next.js + Vercel
 
-## 🌐 Live Demo
-[https://expense-tracker-pro-five-beta.vercel.app/)]
+---
 
-## 🚀 Features
-- Add, edit, delete expenses
-- Monthly budget tracking
-- Multi-currency support (INR, USD, EUR)
-- Dark mode
-- Charts (category-wise spending)
-- Export to CSV
-- Search and filters
-  
- ## 🧠 Key Engineering Highlights
-- Base currency architecture (INR)
-- Safe display-only currency conversion
-- Modular JavaScript design
-- Combined filtering (month, category, search)
+## 🔗 Live Demo
 
-## 🛠 Tech Stack
-- HTML
-- Tailwind CSS
-- JavaScript
-- Chart.js
+👉 (https://expense-tracker-pro-j84j-ip45jo1kh-kani21-12s-projects.vercel.app/index.html)
 
-## ⚙️ How It Works
-- Data stored in localStorage
-- All values stored in INR
-- Currency conversion applied only for display
+---
 
 ## 📸 Screenshots
 
 ### 🏠 Dashboard
-![Dashboard](./assets/dashboard.png)
 
-### 💱 Currency Change
-![Currency](./assets/currency.png)
+![Dashboard](https://via.placeholder.com/800x400?text=Dashboard+Screenshot)
 
-### 📊 Chart View
-![Chart](./assets/chart.png)
+### 🤖 AI Chat Insights
 
-### 🌙 Dark Mode
-![Dark](./assets/dark.png)
+![Chat](https://via.placeholder.com/800x400?text=AI+Chat+Screenshot)
 
+*(Replace with real screenshots later)*
 
+---
+
+## 🛠️ Tech Stack
+
+* ⚛️ Next.js 15
+* 🌐 Vercel (Deployment)
+* 🤖 Groq API (LLM)
+* 💅 Tailwind CSS
+* 🟨 TypeScript
+
+---
+
+## ✨ Features
+
+* 📊 Track daily expenses
+* 📈 Category-wise breakdown
+* 🤖 AI-powered insights & savings tips
+* ⚡ Fast serverless API (Vercel)
+* 🧠 Smart prompt-based analysis
+* 💬 Chat-based financial assistant
+
+---
+
+## 🧠 AI Chat Capabilities
+
+Ask questions like:
+
+* "Where did I spend the most?"
+* "Show my spending insights"
+* "How can I save money?"
+* "Give tips based on my expenses"
+
+### 🎯 Smart Behavior
+
+* Financial queries → 📊 Structured insights
+* Casual chat → 💬 Normal conversation
+
+---
+
+## ⚙️ API Example
+
+### Request
+
+```json
+{
+  "message": "Where did I spend the most?",
+  "transactions": [
+    { "amount": 2000, "category": "Bills", "date": "2026-04-15" }
+  ]
+}
+```
+
+### Response
+
+```json
+{
+  "reply": "📊 Summary: You spent most on Bills..."
+}
+```
+
+---
+
+## ⚙️ Environment Variables
+
+Create `.env.local`:
+
+```env
+GROQ_API_KEY=your_api_key_here
+```
+
+---
+
+## 🚀 Run Locally
+
+```bash
+git clone https://github.com/Kani21-12/expense-tracker-pro.git
+cd expense-tracker-pro
+npm install
+npm run dev
+```
+
+---
+
+## 🚀 Deployment
+
+Deployed using Vercel:
+
+* Connect GitHub repo
+* Add environment variable
+* Deploy
+
+---
+
+## ⚙️ AI Debugging & Learnings
+
+### 🚨 Issues Faced
+
+* Worked locally but failed on Vercel
+* Timeout errors
+* Model not found / deprecated
+
+### ✅ Fixes
+
+* Aligned timeout (10s vs 5s)
+* Updated Groq model
+* Fixed prompt logic
+
+### 🧠 Learnings
+
+* Serverless limits matter
+* Prompt design controls output
+* Handle API failures properly
+
+---
+
+## 🔮 Future Improvements
+
+* 🔁 Streaming AI responses
+* 🧠 Conversation memory
+* 📊 Better charts & analytics
+* 📱 Mobile UI improvements
+
+---
+
+## 👨‍💻 Author
+
+**Kanmani N**
+
+* GitHub: https://github.com/Kani21-12
+* LinkedIn: www.linkedin.com/in/kanmani-natarajan-774510277
+
+---
+
+## ⭐ Support
+
+If you like this project, give it a ⭐ on GitHub!

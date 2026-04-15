@@ -197,95 +197,92 @@ export async function POST(request: NextRequest) {
 
     const prompt = buildPrompt(message, transactions);
     
-    return NextResponse.json({
-      reply: "Test success from API 🚀"
-    });
   
-    // const controller = new AbortController();
-    // const timeoutId = setTimeout(() => controller.abort(), 5000);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
 
-    // let groqResponse: Response;
-    // try {
-    //   groqResponse = await fetch(GROQ_API_URL, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-//           Authorization: `Bearer ${apiKey}`,
-//         },
-//         body: JSON.stringify({
-//           model: MODEL,
-//           temperature: 0.3,
-//           messages: [
-//             {
-//               role: "system",
-//               content: "Return only valid JSON per the provided schema.",
-//             },
-//             {
-//               role: "user",
-//               content: prompt,
-//             },
-//           ],
-//         }),
-//         signal: controller.signal,
-//       });
-//     } catch (error) {
-//       const message =
-//         error instanceof Error ? error.message : "Unknown Groq fetch error";
-//       console.error("Groq fetch failed:", message);
-//       return NextResponse.json(
-//         { error: "Failed to reach Groq API. Please try again shortly." },
-//         { status: 502 }
-//       );
-//     } finally {
-//       clearTimeout(timeoutId);
-//     }
+    let groqResponse: Response;
+    try {
+      groqResponse = await fetch(GROQ_API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          model: MODEL,
+          temperature: 0.3,
+          messages: [
+            {
+              role: "system",
+              content: "Return only valid JSON per the provided schema.",
+            },
+            {
+              role: "user",
+              content: prompt,
+            },
+          ],
+        }),
+        signal: controller.signal,
+      });
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Unknown Groq fetch error";
+      console.error("Groq fetch failed:", message);
+      return NextResponse.json(
+        { error: "Failed to reach Groq API. Please try again shortly." },
+        { status: 502 }
+      );
+    } finally {
+      clearTimeout(timeoutId);
+    }
 
-//     if (!groqResponse.ok) {
-//       let errorText = "";
-//       try {
-//         errorText = await groqResponse.text();
-//       } catch {
-//         errorText = "";
-//       }
-//       console.error("Groq API error:", groqResponse.status, errorText);
-//       return NextResponse.json(
-//         {
-//           error: "Groq request failed",
-//           details: errorText || "No error body received from Groq.",
-//         },
-//         { status: 502 }
-//       );
-//     }
+    if (!groqResponse.ok) {
+      let errorText = "";
+      try {
+        errorText = await groqResponse.text();
+      } catch {
+        errorText = "";
+      }
+      console.error("Groq API error:", groqResponse.status, errorText);
+      return NextResponse.json(
+        {
+          error: "Groq request failed",
+          details: errorText || "No error body received from Groq.",
+        },
+        { status: 502 }
+      );
+    }
 
-//     let data: any;
-//     try {
-//       data = await groqResponse.json();
-//     } catch {
-//       return NextResponse.json(
-//         { error: "Invalid JSON received from Groq API." },
-//         { status: 502 }
-//       );
-//     }
-//     const reply = data?.choices?.[0]?.message?.content;
+    let data: any;
+    try {
+      data = await groqResponse.json();
+    } catch {
+      return NextResponse.json(
+        { error: "Invalid JSON received from Groq API." },
+        { status: 502 }
+      );
+    }
+    const reply = data?.choices?.[0]?.message?.content;
 
-//     if (typeof reply !== "string" || !reply.trim()) {
-//       return NextResponse.json(
-//         { error: "Groq returned an empty response." },
-//         { status: 502 }
-//       );
-//     }
+    if (typeof reply !== "string" || !reply.trim()) {
+      return NextResponse.json(
+        { error: "Groq returned an empty response." },
+        { status: 502 }
+      );
+    }
 
-//     const raw = reply.trim();
-//     let formatted = raw;
-//     try {
-//       const parsed = JSON.parse(raw) as AiJson;
-//       formatted = formatAssistantResponse(parsed);
-//     } catch {
-//       // If the model didn't return valid JSON, fall back to raw text.
-//       formatted = raw;
-//     }
+    const raw = reply.trim();
+    let formatted = raw;
+    try {
+      const parsed = JSON.parse(raw) as AiJson;
+      formatted = formatAssistantResponse(parsed);
+    } catch {
+      // If the model didn't return valid JSON, fall back to raw text.
+      formatted = raw;
+    }
 
-//     return NextResponse.json({ reply: formatted });
+    return NextResponse.json({ reply: formatted });
   } catch (error) {
     const message =
       error instanceof Error ? error.message : "Unexpected error while processing chat.";
